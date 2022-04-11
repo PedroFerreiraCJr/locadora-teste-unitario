@@ -18,3 +18,11 @@ O JUnit também pode ser utilizado para testes de integração e testes funciona
 ## Metáfora da Janela de Vidro
 Ela foi introduzida em 1982 na área de criminologia, e tenta explicar uma característica do comportamento humano. Considere um edifício com algumas janelas quebradas, se as janelas não forem reparadas, a tendencia é que vândalos quebrem mais janelas.
 Portanto, é sugerido que sempre seja deixado os testes com a barra verde, pois assim, evitasse que mais testes com barra vermelha se acumulem.
+
+## Aula 05 - Organização das classes
+Colocar as classes de teste na mesma estrutura de pacote das classes testadas. Dessa forma, somente os atributos e métodos
+privados não podem ser acessados mas os definidos com os outros modificadores são visíveis.
+
+## Aula 06 - Assertivas
+As assertivas são uma característica dos frameworks XUnit, ela está diretamente ligada a uma expressão lógica. Caso a
+asserção falhe, o teste também falha.
