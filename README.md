@@ -26,3 +26,13 @@ privados não podem ser acessados mas os definidos com os outros modificadores s
 ## Aula 06 - Assertivas
 As assertivas são uma característica dos frameworks XUnit, ela está diretamente ligada a uma expressão lógica. Caso a
 asserção falhe, o teste também falha.
+
+## Aula 07 - AssertThat
+O método **AssertThat** da classe Assert, é usada para tornar as verificações de determinado caso de teste
+mais flúidas, pois usa classes com métodos encadeados que são conhecidas como matchers. Esse encadeamento
+de métodos com nomes semânticos é conhecido como Fluent Interface, que foi mencionado primeiramente
+por **Marting Fowler**, em 2005. O Junit tem a dependência para o **Hamcrest** que trás consigo diversos matchers úteis.
+Vale notar que a ordem dos argumentos agora está invertida. No caso do método **assertThat**, o primeiro argumento
+se refere ao valor atual, e o segundo argumento recebe um matcher com o valor esperado.
+Para tornar a leitura da assertiva mais legível, basta adicionar imports estáticos dos métodos e matchers.
+
