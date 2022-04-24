@@ -28,9 +28,9 @@ As assertivas são uma característica dos frameworks XUnit, ela está diretamen
 asserção falhe, o teste também falha.
 
 ## Aula 07 - AssertThat
-O método **AssertThat** da classe Assert, é usada para tornar as verificações de determinado caso de teste
-mais flúidas, pois usa classes com métodos encadeados que são conhecidas como matchers. Esse encadeamento
-de métodos com nomes semânticos é conhecido como Fluent Interface, que foi mencionado primeiramente
+O método **assertThat** da classe **Assert**, é usado para tornar as verificações de determinado caso de teste
+mais flúidas, pois usa métodos encadeados que são conhecidos como matchers. Esse encadeamento
+de métodos com nomes semânticos é conhecido como **Fluent Interface**, que foi mencionado primeiramente
 por **Martin Fowler**, em 2005. O Junit tem a dependência para o **Hamcrest** que trás consigo diversos matchers úteis.
 Vale notar que a ordem dos argumentos agora está invertida. No caso do método **assertThat**, o primeiro argumento
 se refere ao valor atual, e o segundo argumento recebe um matcher com o valor esperado.

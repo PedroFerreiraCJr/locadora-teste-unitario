@@ -15,7 +15,6 @@ import br.ce.wcaquino.teste_unitario.entidades.Filme;
 import br.ce.wcaquino.teste_unitario.entidades.Locacao;
 import br.ce.wcaquino.teste_unitario.entidades.Usuario;
 import br.ce.wcaquino.teste_unitario.servicos.LocacaoService;
-import br.ce.wcaquino.teste_unitario.utils.DataUtils;
 
 public class LocacaoServiceTest {
 	/**
