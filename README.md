@@ -46,9 +46,4 @@ Existe uma maneira de minimizar a abordagem macro dos testes que é coletando to
 análise em caso de falha em várias asserções de um teste. Essa funcionalidade é conhecida como **Rule**. Ela é apresentada
 junto deste commit no teste **testeLocacao** da classe de teste **LocacaoServiceTest**. Essa duas soluções ou abordagens
 são as mais usadas, e essa segunda, usando uma abordagem macro dos testes é preferível pelo autor do
-curso, **Wagner Costa Aquino**.ç
-
-
-
-
-
+curso, **Wagner Costa Aquino**.
