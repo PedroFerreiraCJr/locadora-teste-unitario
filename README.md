@@ -36,3 +36,19 @@ Vale notar que a ordem dos argumentos agora está invertida. No caso do método 
 se refere ao valor atual, e o segundo argumento recebe um matcher com o valor esperado.
 Para tornar a leitura da assertiva mais legível, basta adicionar imports estáticos dos métodos e matchers.
 
+## Aula 08 - Divisão de um teste
+Cada teste deve ser isolado, tendo na maioria das vezes somente uma única assertiva. Dessa forma, como os testes estariam
+fazendo uma única verificação lógica, seria mais fácil fazer o rastreamento dos erros quando necessário.
+Em caso de falha na asserção, o teste falha, conforme o esperado. Mesmo essa sendo uma forma de fazer a divisão de um teste
+também há a outra maneira que é com mais asserções no mesmo teste. Essa situação é aceitável quando o cenário e ação
+do teste não mudam com muita frequência, tornando assim o gerenciamento macro do teste e mais de uma asserção por teste.
+Existe uma maneira de minimizar a abordagem macro dos testes que é coletando todos os erros de uma única vez, para posterior
+análise em caso de falha em várias asserções de um teste. Essa funcionalidade é conhecida como **Rule**. Ela é apresentada
+junto deste commit no teste **testeLocacao** da classe de teste **LocacaoServiceTest**. Essa duas soluções ou abordagens
+são as mais usadas, e essa segunda, usando uma abordagem macro dos testes é preferível pelo autor do
+curso, **Wagner Costa Aquino**.ç
+
+
+
+
+
