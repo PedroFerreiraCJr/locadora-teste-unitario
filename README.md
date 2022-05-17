@@ -47,3 +47,34 @@ análise em caso de falha em várias asserções de um teste. Essa funcionalidad
 junto deste commit no teste **testeLocacao** da classe de teste **LocacaoServiceTest**. Essa duas soluções ou abordagens
 são as mais usadas, e essa segunda, usando uma abordagem macro dos testes é preferível pelo autor do
 curso, **Wagner Costa Aquino**.
+
+## Aula 09 - Exceções - Parte 1
+As falhas são caracterizadas por condições que são avaliadas, nas asserções, e
+não são dadas como verdadeiras, fazendo com que o teste falhe.
+Já os erros são ocasionados falhas na execução do fluxo correto do teste e, portanto,
+impeça que ele seja concluído com sucesso. Ou seja, quando ocorre alguma exceção. 
+Uma outra possibilidade é capturar a exceção lançada e usar o método **fail()**
+da classse **Assert** para quando a exceção ocorrer, e dessa forma, ser capturada
+no bloco catch, o método **fail()** ser invocado para então informar para o JUnit
+que o teste deve falhar. Mas dessa forma, a questão da rastreabilidade do teste
+é prejudicada. Porque dessa maneira, perdesse o ponto onde a exceção foi lançada.
+Portanto, fica a dica, se o teste não está esperando o lançamento de exceção alguma
+deixe que o JUnit gerencie a exceção lançada, pois assim, caso ocorra um erro a
+pilha erá informada.
+
+Agora, caso o teste esteja sendo projetado para esperar o lançamento de uma exceção
+, ou seja, o teste deve passar caso seja lançada a exceção, então, uma das possibi-
+lidades é declarar na anotação **@Test** a exceção esperada com o metadado
+**expected**.
+Exemplo: **@Test(expected = Exception.class)**, neste exemplo está sendo esperado
+que seja lançada uma exceção do tipo **Exception**. Essa abordagem é considerada
+elegante.
+
+Uma segunda abordagem é fazer uso do bloco try-catch para capturar a exceção e
+validar a mensagem de erro da mesma.
+
+A terceira abordagem é fazer uso de uma **@Rule**. Essa rule é declarada como uma
+instância da classe, do tipo **ExpectedException**, e instanciada com o método
+**ExpectedException.none()**.
+
+As três abordagens mencionadas foram implementadas na classe **LocacaoServiceTest**.
