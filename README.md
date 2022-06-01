@@ -85,7 +85,7 @@ variável de instância, do tipo **ExpectedException**, e inicializada com o mé
 As três abordagens mencionadas foram implementadas na classe **LocacaoServiceTest**, neste
 commit. As mesmas serão discutidas na parte 2 deste assunto.
 
-## Aula 09 - Exceções - Parte 2
+## Aula 10 - Exceções - Parte 2
 Essa aula é composta de uma discussão sobre as maneiras de lidar com exceções em testes unitários.
  1. Elegante: Mesmo sendo muito prática, ela é superficial. Mas por quê?
 Bem, porquê o teste passa quando uma exceção do tipo informado for lançada, mas não há como garantir que
