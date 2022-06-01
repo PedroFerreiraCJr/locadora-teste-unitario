@@ -57,7 +57,7 @@ public class LocacaoServiceTest {
 
 	/**
 	 * Essa é uma abordagem de captura de exceção considerada elegante, pois basta
-	 * declarar a cláusula throws e adicionar o metadado na anotação.
+	 * declarar a cláusula throws e adicionar o metadado na anotação @Test.
 	 */
 	@Test(expected = Exception.class)
 	public void testeLocacao_filmeSemEstoque() throws Exception {
