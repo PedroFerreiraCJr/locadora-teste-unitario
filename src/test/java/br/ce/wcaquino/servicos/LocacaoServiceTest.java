@@ -5,10 +5,10 @@ import static br.ce.wcaquino.teste_unitario.utils.DataUtils.obterDataComDiferenc
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.util.Date;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -17,6 +17,8 @@ import org.junit.rules.ExpectedException;
 import br.ce.wcaquino.teste_unitario.entidades.Filme;
 import br.ce.wcaquino.teste_unitario.entidades.Locacao;
 import br.ce.wcaquino.teste_unitario.entidades.Usuario;
+import br.ce.wcaquino.teste_unitario.exceptions.FilmeSemEstoqueException;
+import br.ce.wcaquino.teste_unitario.exceptions.LocadoraException;
 import br.ce.wcaquino.teste_unitario.servicos.LocacaoService;
 
 public class LocacaoServiceTest {
@@ -59,7 +61,7 @@ public class LocacaoServiceTest {
 	 * Essa é uma abordagem de captura de exceção considerada elegante, pois basta
 	 * declarar a cláusula throws e adicionar o metadado na anotação @Test.
 	 */
-	@Test(expected = Exception.class)
+	@Test(expected = FilmeSemEstoqueException.class)
 	public void testeLocacao_filmeSemEstoque() throws Exception {
 		// cenário
 		LocacaoService service = new LocacaoService();
@@ -70,42 +72,32 @@ public class LocacaoServiceTest {
 		service.alugarFilme(usuario, filme);
 	}
 
-	/**
-	 * Essa é uma abordagem considerada robusta, pois com ela é possível capturar a
-	 * exceção e avaliar a mensagem da mesma.
-	 */
 	@Test
-	public void testeLocacao_filmeSemEstoque2() {
+	public void testLocacao_usuarioVazio() throws FilmeSemEstoqueException {
 		// cenário
 		LocacaoService service = new LocacaoService();
-		Usuario usuario = new Usuario("Usuario 1");
-		Filme filme = new Filme("Filme 1", 0, 5.0);
-
-		try {
-			// ação
-			service.alugarFilme(usuario, filme);
-			fail("Deveria ter lançado uma exceção");
-		} catch (Exception e) {
-			assertThat(e.getMessage(), is("Filme sem estoque"));
-		}
-	}
-
-	/**
-	 * Essa é considerada uma abordagem nova, pois foi adicionada posteriormente na
-	 * API do framework JUnit.
-	 */
-	@Test
-	public void testeLocacao_filmeSemEstoque3() throws Exception {
-		// com esta rule, a expectativa deve ser declarada primeiro
-		exception.expect(Exception.class);
-		exception.expectMessage("Filme sem estoque");
-
-		// cenário
-		LocacaoService service = new LocacaoService();
-		Usuario usuario = new Usuario("Usuario 1");
 		Filme filme = new Filme("Filme 1", 0, 5.0);
 
 		// ação
-		service.alugarFilme(usuario, filme);
+		try {
+			service.alugarFilme(null, filme);
+			Assert.fail();
+		} catch (LocadoraException e) {
+			assertThat(e.getMessage(), is("Usuario vazio"));
+		}
+	}
+
+	@Test
+	public void testLocacao_filmeVazio() throws FilmeSemEstoqueException, LocadoraException {
+
+		// cenário
+		LocacaoService service = new LocacaoService();
+		Usuario usuario = new Usuario("Usuario 1");
+
+		exception.expect(LocadoraException.class);
+		exception.expectMessage("Filme vazio");
+
+		// ação
+		service.alugarFilme(usuario, null);
 	}
 }

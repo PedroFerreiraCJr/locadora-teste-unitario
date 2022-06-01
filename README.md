@@ -6,7 +6,8 @@
  - Timely: Este vem de oportuno. OU seja um teste deve ser criado no momento oportúnuo;
 
 ## Frameworks XUnit
- Estes frameworks tem este nome por conta no framework SUnit desenvolvido na linguagem de programação Smalltalk, criado por Kent Beck, 1998. Todos estes frameworks tentam seguir um mesmo componente principal de sua arquitetura, e são compostos de alguns componentes:
+ Estes frameworks tem este nome por conta no framework SUnit desenvolvido na linguagem de programação Smalltalk, criado por Kent Beck, 1998.
+ Todos estes frameworks tentam seguir um mesmo componente principal de sua arquitetura, e são compostos de alguns componentes:
  - TestRunner: Responsável por executar os testes e coletar os resultados;
  - TestFixture (TestContext): Que são as precondições necessárias aos testes;
  - TestSuites: Permite que sejam agrupados um conjunto de testes que devem ser executados em conjunto;
@@ -16,8 +17,10 @@
 O JUnit também pode ser utilizado para testes de integração e testes funcionais como ferramenta de padronização.
 
 ## Metáfora da Janela de Vidro
-Ela foi introduzida em 1982 na área de criminologia, e tenta explicar uma característica do comportamento humano. Considere um edifício com algumas janelas quebradas, se as janelas não forem reparadas, a tendencia é que vândalos quebrem mais janelas.
-Portanto, é sugerido que sempre seja deixado os testes com a barra verde, pois assim, evitasse que mais testes com barra vermelha se acumulem.
+Ela foi introduzida em 1982 na área de criminologia, e tenta explicar uma característica do comportamento humano. Considere um edifício
+com algumas janelas quebradas, se as janelas não forem reparadas, a tendencia é que vândalos quebrem mais janelas.
+Portanto, é sugerido que sempre seja deixado os testes com a barra verde, pois assim, evitasse que mais testes com barra vermelha
+se acumulem.
 
 ## Aula 05 - Organização das classes
 Colocar as classes de teste na mesma estrutura de pacote das classes testadas. Dessa forma, somente os atributos e métodos
@@ -81,3 +84,27 @@ variável de instância, do tipo **ExpectedException**, e inicializada com o mé
 
 As três abordagens mencionadas foram implementadas na classe **LocacaoServiceTest**, neste
 commit. As mesmas serão discutidas na parte 2 deste assunto.
+
+## Aula 09 - Exceções - Parte 2
+Essa aula é composta de uma discussão sobre as maneiras de lidar com exceções em testes unitários.
+ 1. Elegante: Mesmo sendo muito prática, ela é superficial. Mas por quê?
+Bem, porquê o teste passa quando uma exceção do tipo informado for lançada, mas não há como garantir que
+foi lançada pelo motivo adequado, ou seja, pela razão correta. Se houver mais de um lançamento de exceção
+para a exceção **Exception** (definida neste exemplo como a exceção de validação de estoque vazio), não
+será possível saber o motivo do lançamento; podendo haver multiplas causas. Isso acontece porque a forma
+elegante não consegue verificar a mensagem da exceção. Para corrigir essa situação, foi criada a exceção
+**FilmeSemEstoqueException**. Que deve ser considerada no momento de verificar se o teste deve passar ou
+não.
+</br>
+**Nota**: Nessa aula foram adicionadas mais duas validações no método de alugar filme.
+
+ 2. Robusta: Essa abordagem é considerada robusta por que possibiita além de tratar a exception, fazer
+a verificação da mensagem de causa na exceção. Ambas as formas, tanto, a forma Robusta quanto a forma
+Nova tornam possível fazer a verificação da mensagem de causa da exceção. Vale ressaltar que esta forma
+é a única que faz com que o código possa se executado além da exceção, pois foi feito o tratamento e verificação
+posterior com a **Assert**.
+
+ 3. Já esta forma, avisa ao JUnit que podem ser lançadas determinadas exceções e que caso alguma das exceções
+ que foram reportadas forem lançadas na execução do teste, e além da mensagem ter que estar contida na exceção
+ aí sim que deve ser considerado como uma execução normal.
+
