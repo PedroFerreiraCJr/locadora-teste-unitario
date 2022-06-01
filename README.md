@@ -80,4 +80,4 @@ variável de instância, do tipo **ExpectedException**, e inicializada com o mé
 **ExpectedException.none**.
 
 As três abordagens mencionadas foram implementadas na classe **LocacaoServiceTest**, neste
-commit. As mesmas seão discutidas na parte 2 deste assunto.
+commit. As mesmas serão discutidas na parte 2 deste assunto.
