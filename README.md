@@ -111,11 +111,11 @@ posterior com a **Assert**.
 ## Aula 11 - Before e After
 O framework JUnit com o objetivo de tornar possível a execução de um método que configure alguma característica
 em um teste, disponibiliza as anotações **@Before** e **@After**. Essas anotações quando aplicadas a um método
-**public void** fazem com que o método anotado seja invocado antes e depois, respectivamente, de cada método
+`public void` fazem com que o método anotado seja invocado antes e depois, respectivamente, de cada método
 anotado com **@Test**.
 
 O framework também disponibiliza um outro par de anotações com o objetivo de executar determinada tarefa apenas uma única vez
-para toda uma classe de teste. Dessa forma, um método anotado com **@BeforeClass** (que deve ser um método **public static void**)
+para toda uma classe de teste. Dessa forma, um método anotado com **@BeforeClass** (que deve ser um método `public static void`)
 é invocado antes da execução dos testes da classe, ou seja, antes da instânciação do objeto. De maneira semelhante, quando um método
-anotado com **@AfterClass**, que também deve ter as característica de um método **public static void**, o mesmo é invocado após
+anotado com **@AfterClass**, que também deve ter as característica de um método `public static void`, o mesmo é invocado após
 todos os testes da classe serem executados.
