@@ -8,11 +8,8 @@ import static org.junit.Assert.assertThat;
 
 import java.util.Date;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -28,36 +25,18 @@ import br.ce.wcaquino.teste_unitario.servicos.LocacaoService;
 public class LocacaoServiceTest {
 
 	private LocacaoService service;
-	
+
 	@Rule
 	public ErrorCollector error = new ErrorCollector();
 
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
-	
+
 	@Before
 	public void setUp() {
 		service = new LocacaoService();
 	}
 
-	/**
-	 * Código de exemplo das anotações demonstradas na aula
-	@After
-	public void tearDown() {
-		System.out.println("After");
-	}
-	
-	@BeforeClass
-	public static void setUpClass() {
-		System.out.println("BeforeClass");
-	}
-	
-	@AfterClass
-	public static void tearDownClass() {
-		System.out.println("AfterClass");
-	}
-	*/
-	
 	/**
 	 * <pre>
 	 * 	1º O primeiro passo para tornar este código um teste é torná-lo um método
