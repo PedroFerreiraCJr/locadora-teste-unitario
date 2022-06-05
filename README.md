@@ -112,7 +112,7 @@ posterior com a **Assert**.
 O framework JUnit com o objetivo de tornar possível a execução de um método que configure alguma característica
 em um teste, disponibiliza as anotações **@Before** e **@After**. Essas anotações quando aplicadas a um método
 **public void** fazem com que o método anotado seja invocado antes e depois, respectivamente, de cada método
-anotado com **Test**.
+anotado com **@Test**.
 
 O framework também disponibiliza um outro par de anotações com o objetivo de executar determinada tarefa apenas uma única vez
 para toda uma classe de teste. Dessa forma, um método anotado com **@BeforeClass** (que deve ser um método **public static void**)
