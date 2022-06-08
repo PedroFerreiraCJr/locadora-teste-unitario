@@ -123,17 +123,17 @@ anotado com **@AfterClass**, que também deve ter as característica de um méto
 todos os testes da classe serem executados.
 
 ## Aula 12 - Ordem na execução dos testes
-Quanto a ordem de execução dos casos de teste de uma classe de teste, o JUnit não garante que os teste são executados na
+Quanto a ordem de execução dos casos de teste de uma classe de teste, o JUnit não garante que os testes são executados na
 ordem em que foram declarados. Mas essa é uma das características que uma classe de teste deve seguir, ou seja, os testes devem ser
 independentes entre si. Para testar essa característica, foi criado a classe **OrdemTest** com o objetivo de criar dois casos de teste
-que tem uma dependencia entre si. O caso de teste **inicia()** incremeta um contador, e o caso de teste **verifica** faz uma asserção
-quanto ao valor que está na variável contador. Caso o método **verifica()** seja executado antes que o teste **inicia()**, o teste
+que tem uma dependencia entre si. O caso de teste **inicia()** incremeta um contador, e o caso de teste **verifica()** faz uma asserção
+quanto ao valor que está na variável contador. Caso o teste **verifica()** seja executado antes que o teste **inicia()**, o teste
 não passa, porque o valor da variável contador está incorreto.
 
 Uma forma de assegurar que o teste passe é, removendo a anotação **@Test** dos dois casos de teste; criando um novo caso de teste, neste
 caso chamado **testGeral()**, que faz a invocação dos dois métodos anteriores em uma ordem predefinida, visando estabelecer uma ordem
-na execução da invocação dos métodos. Vale ressaltar que dessa forma, é prejudicado a rastreabilidade dos testes.t
+na execução da invocação dos métodos. Vale ressaltar que dessa forma, é prejudicado a rastreabilidade dos testes.
 
-Outra forma de assegurar que os casos de testes executem em uma ordem específica, é usando a anotação **@FixMethodOrdem**, com o metadado
+Outra forma de assegurar que os casos de teste executem em uma ordem específica, é usando a anotação **@FixMethodOrdem**, com o metadado
 **MethodSorters.NAME_ASCENDING**. Dessa forma, deve-se notar que agora os testes devem ser declarados de forma léxica, usando até mesmo
 de prefixos para facilitar a leitura, como por exemplo: `public void test1_*`, `public void test2_*` e etc;
