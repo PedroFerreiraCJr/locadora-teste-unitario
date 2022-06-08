@@ -137,3 +137,10 @@ na execução da invocação dos métodos. Vale ressaltar que dessa forma, é pr
 Outra forma de assegurar que os casos de teste executem em uma ordem específica, é usando a anotação **@FixMethodOrdem**, com o metadado
 **MethodSorters.NAME_ASCENDING**. Dessa forma, deve-se notar que agora os testes devem ser declarados de forma léxica, usando até mesmo
 de prefixos para facilitar a leitura, como por exemplo: `public void test1_*`, `public void test2_*` e etc;
+
+## Aula 13 - Desafio - Alugando mais de um filme
+A demanda do desafio é tornar possível alugar mais de um filme por vez, ou por locação. Dessa forma, deve ser possível alugar mais de um
+filme por vez. Com isso os testes deixam de funcionar e portanto, deve ser feito a correção nos testes também.
+
+O objetivo desse desafio foi perceber o quanto importante são os testes de software, pois caso não houvessem, ficaria mais difícil
+saber se o código após a adição da nova funcionalidade está funcionando corretamente.

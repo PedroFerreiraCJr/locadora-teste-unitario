@@ -6,7 +6,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,11 +54,11 @@ public class LocacaoServiceTest {
 	public void testeLocacao() throws Exception {
 		// cenário
 		Usuario usuario = new Usuario("Usuario 1");
-		Filme filme = new Filme("Filme 1", 2, 5.0);
+		List<Filme> filmes = Collections.singletonList(new Filme("Filme 1", 2, 5.0));
 
 		// ação
 		Locacao locacao = null;
-		locacao = service.alugarFilme(usuario, filme);
+		locacao = service.alugarFilmes(usuario, filmes);
 
 		// verificação
 		error.checkThat(locacao.getValor(), is(equalTo(5.0)));
@@ -72,20 +74,20 @@ public class LocacaoServiceTest {
 	public void testeLocacao_filmeSemEstoque() throws Exception {
 		// cenário
 		Usuario usuario = new Usuario("Usuario 1");
-		Filme filme = new Filme("Filme 1", 0, 5.0);
+		List<Filme> filmes = Collections.singletonList(new Filme("Filme 1", 0, 4.0));
 
 		// ação
-		service.alugarFilme(usuario, filme);
+		service.alugarFilmes(usuario, filmes);
 	}
 
 	@Test
 	public void testLocacao_usuarioVazio() throws FilmeSemEstoqueException {
 		// cenário
-		Filme filme = new Filme("Filme 1", 0, 5.0);
+		List<Filme> filmes = Collections.singletonList(new Filme("Filme 1", 0, 5.0));
 
 		// ação
 		try {
-			service.alugarFilme(null, filme);
+			service.alugarFilmes(null, filmes);
 			Assert.fail();
 		} catch (LocadoraException e) {
 			assertThat(e.getMessage(), is("Usuario vazio"));
@@ -101,6 +103,6 @@ public class LocacaoServiceTest {
 		exception.expectMessage("Filme vazio");
 
 		// ação
-		service.alugarFilme(usuario, null);
+		service.alugarFilmes(usuario, null);
 	}
 }
