@@ -1,4 +1,4 @@
-# Notas do Curso - JUnit 4, Mockito, PowerMock
+# Notas do Curso - JUnit 4, Mockito e TDD
 
 ## Princípio F.I.R.S.T
  - Fast: O teste deve ser rápido;
