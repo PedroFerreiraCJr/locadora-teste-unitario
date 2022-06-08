@@ -1,4 +1,4 @@
-package br.ce.wcaquino.servicos;
+package br.ce.wcaquino.teste_unitario.servicos;
 
 import static br.ce.wcaquino.teste_unitario.utils.DataUtils.isMesmaData;
 import static br.ce.wcaquino.teste_unitario.utils.DataUtils.obterDataComDiferencaDias;
@@ -22,7 +22,6 @@ import br.ce.wcaquino.teste_unitario.entidades.Locacao;
 import br.ce.wcaquino.teste_unitario.entidades.Usuario;
 import br.ce.wcaquino.teste_unitario.exceptions.FilmeSemEstoqueException;
 import br.ce.wcaquino.teste_unitario.exceptions.LocadoraException;
-import br.ce.wcaquino.teste_unitario.servicos.LocacaoService;
 
 public class LocacaoServiceTest {
 

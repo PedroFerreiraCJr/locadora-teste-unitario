@@ -1,4 +1,4 @@
-package br.ce.wcaquino.servicos;
+package br.ce.wcaquino.teste_unitario.servicos;
 
 import org.junit.Assert;
 import org.junit.Test;
