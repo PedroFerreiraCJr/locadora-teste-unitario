@@ -142,5 +142,6 @@ de prefixos para facilitar a leitura, como por exemplo: `public void test1_*`, `
 A demanda do desafio é tornar possível alugar mais de um filme por vez, ou por locação. Dessa forma, deve ser possível alugar mais de um
 filme por vez. Com isso os testes deixam de funcionar e portanto, deve ser feito a correção nos testes também.
 
-O objetivo desse desafio foi perceber o quanto importante são os testes de software, pois caso não houvessem, ficaria mais difícil
-saber se o código após a adição da nova funcionalidade está funcionando corretamente.
+O objetivo desse desafio é perceber o quão importante são os testes de software, pois caso não houvessemos feito os testes unitários da
+classe **LocacaoService**, ficaria mais difícil saber se o código está operando corretamente após a adição da novas funcionalidades ao
+projeto.
