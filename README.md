@@ -151,21 +151,26 @@ Normalmente quando estamos programando temos o hábito de desenvolver a funciona
 (Teste), e posteriormente quando o teste já está validando o esperado, fazemos melhorias a ele (Refatoração).
 Que tal trabalharmos de uma forma diferente? Primeiro desenvolvendo o Teste, depois o Código de forma a criar uma implementação mais
 simples possível que atenda a funcionalidade desejada, e assim posteriormente, caso necessário, fazer a refatoração do código.
-Essa prática, ou melhor dizendo, metodologia já existe a bastante tempo. Essa se chama Test-Driven Development (TDD), que em Português
+Essa prática, ou melhor dizendo, metodologia já existe a bastante tempo. Esta se chama **Test-Driven Development (TDD)**, que em Português
 pode ser traduzida para Desenvolvimento Guiado por Testes.
+
 Neste exemplo foi desenvolvido um teste para uma classe **Calculadora**. E seguindo a metodologia TDD, vamos começar o desenvolvimento
-pela classe de teste, a classe **CalculadoraTest**.p
+pela classe de teste, a classe **CalculadoraTest**.
 Dessa forma, devemos expressar as funcionalidades da classe real através de casos de teste. Para cada funcionalidade da **Calculadora**
-devemos criar um teste. O desenvolvimento do teste segue os mesmos princípios, tendo as seções: cenário, ação, e verificação. A ação
-do teste é quem deve especificar como deve ser criado a interface do método que será criado. Neste caso, o método terá a seguinte
-assinatura: `public int somar(int a, int b)`.
-Enquanto não estiver habituado com essa forma de desenvolvimento, geralmente tendemos a fazer o desenvolvimento com um ritmo mais lento.
-E isso não faz mal, acontece mesmo. Mas quando já estiver mais prática com essa maneira de desenvolver uma funcionalidade, podemos ser
-mais diretos ao ponto. Mais uma coisa importante a se notar é que não devemos criar código desnecessário, devemos seguir o raciocínio mais
-simples e direcionado possível para não perder o foco da funcionalidade e do teste em si.
-Dessa forma, o ciclo de desenvolvimento deve ser gerenciado RED, GREEN, REFACTOR. Ou seja, vermlho poque o teste não passa, pois a 
-funcionalidade não foi desenvolvida, somente especificamente minimamente na interface do método. Posteriormente, o teste passa para verde
-porque a funcionalidade foi implementada, e após isso, fazemos uma refatoração, caso seja necessário.
+devemos criar um teste.
+O desenvolvimento do teste segue os mesmos princípios, tendo as seções: cenário, ação, e verificação. A ação do teste é quem deve 
+especificar como deve ser definida a interface do método que será criado. Neste caso, o método terá a seguinte assinatura:
+`public int somar(int a, int b)`.
+
+Enquanto não habituado com essa forma de desenvolvimento, geralmente tendemos a fazer o desenvolvimento com um ritmo mais lento.
+E isso não faz mal, acontece mesmo. Mas quando já tiver mais prática com essa maneira de desenvolver uma funcionalidade, podemos ser
+mais diretos ao ponto. Mais uma coisa importante a se notar é que não devemos criar código desnecessário, devemos seguir o raciocínio
+mais simples e direcionado possível para não perder o foco da funcionalidade e do teste em si.
+
+Dessa forma, o ciclo de desenvolvimento deve ser gerenciado **RED** -> **GREEN** -> **REFACTOR**. Ou seja, vermlho porquê o teste não
+passa, pois a funcionalidade ainda não foi desenvolvida, somente especificamente o mínimo na interface do método para que compile.
+Posteriormente, o teste passa para verde, e após isso, fazemos uma refatoração, caso seja necessário.
+
 O conhecimento vem com a prática, portanto, quanto mais for praticado, mais conhecimento será absorvido e experiência adquirida. O TDD não
 traz ganhos imediatos, mas sim, quando estamos intermediários do projeto onde temos que verificar algo dentro do projeto e que está
 precisando ser alterada devido a uma demanda solicitada.
