@@ -167,10 +167,10 @@ E isso não faz mal, acontece mesmo. Mas quando já tiver mais prática com essa
 mais diretos ao ponto. Mais uma coisa importante a se notar é que não devemos criar código desnecessário, devemos seguir o raciocínio
 mais simples e direcionado possível para não perder o foco da funcionalidade e do teste em si.
 
-Dessa forma, o ciclo de desenvolvimento deve ser gerenciado **RED** -> **GREEN** -> **REFACTOR**. Ou seja, vermlho porquê o teste não
+Dessa forma, o ciclo de desenvolvimento deve ser gerenciado **RED** -> **GREEN** -> **REFACTOR**. Ou seja, vermelho porquê o teste não
 passa, pois a funcionalidade ainda não foi desenvolvida, somente especificamente o mínimo na interface do método para que compile.
 Posteriormente, o teste passa para verde, e após isso, fazemos uma refatoração, caso seja necessário.
 
 O conhecimento vem com a prática, portanto, quanto mais for praticado, mais conhecimento será absorvido e experiência adquirida. O TDD não
-traz ganhos imediatos, mas sim, quando estamos intermediários do projeto onde temos que verificar algo dentro do projeto e que está
+traz ganhos imediatos, mas sim, quando estamos com o projeto já em andamento, e onde temos que verificar uma funcionalidade dentro do projeto, e que está
 precisando ser alterada devido a uma demanda solicitada.
