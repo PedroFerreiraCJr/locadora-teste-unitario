@@ -88,7 +88,7 @@ public class LocacaoServiceTest {
 	@Test
 	public void testLocacao_usuarioVazio() throws FilmeSemEstoqueException {
 		// cenário
-		List<Filme> filmes = Collections.singletonList(new Filme("Filme 1", 0, 5.0));
+		List<Filme> filmes = Collections.singletonList(new Filme("Filme 1", 1, 5.0));
 
 		// ação
 		try {
