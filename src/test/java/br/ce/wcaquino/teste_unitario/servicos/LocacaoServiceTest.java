@@ -56,8 +56,7 @@ public class LocacaoServiceTest {
 		List<Filme> filmes = Collections.singletonList(new Filme("Filme 1", 2, 5.0));
 
 		// ação
-		Locacao locacao = null;
-		locacao = service.alugarFilmes(usuario, filmes);
+		Locacao locacao = service.alugarFilmes(usuario, filmes);
 
 		// verificação
 		error.checkThat(locacao.getValor(), is(equalTo(5.0)));
@@ -66,7 +65,7 @@ public class LocacaoServiceTest {
 	}
 
 	/**
-	 * Essa é uma abordagem de captura de exceção considerada elegante, pois basta
+	 * Essa é uma abordagem de captura de exceção considerada Elegante, pois basta
 	 * declarar a cláusula throws e adicionar o metadado na anotação @Test.
 	 */
 	@Test(expected = FilmeSemEstoqueException.class)
@@ -79,6 +78,13 @@ public class LocacaoServiceTest {
 		service.alugarFilmes(usuario, filmes);
 	}
 
+	/**
+	 * Essa é uma abordagem de captura de exceção considerada Robusta, porque basta
+	 * declarar a cláusula throws para possíveis exceptions que não se deseja
+	 * capturar, além disso, é preciso adicionar um bloco try/catch para capturar a
+	 * exception que se está testando; desta forma, é possível, tanto validar a
+	 * exception que se está esperando, assim como, a mensagem enviada na exception.
+	 */
 	@Test
 	public void testLocacao_usuarioVazio() throws FilmeSemEstoqueException {
 		// cenário
@@ -93,6 +99,12 @@ public class LocacaoServiceTest {
 		}
 	}
 
+	/**
+	 * Essa é uma abordagem de captura de exceção considerada Nova (porque foi uma
+	 * funcionalidade adicionada posteriormente no framework JUnit); com ela, também
+	 * é possível informar ao JUnit que se esperar uma determinada exception, assim
+	 * como, a mensagem que se espera obter da exception.
+	 */
 	@Test
 	public void testLocacao_filmeVazio() throws FilmeSemEstoqueException, LocadoraException {
 		// cenário
