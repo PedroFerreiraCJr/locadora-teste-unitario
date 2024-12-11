@@ -1,5 +1,7 @@
 package br.ce.wcaquino.teste_unitario.servicos;
 
+import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.caiEm;
+import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.caiNumaSegunda;
 import static br.ce.wcaquino.teste_unitario.utils.DataUtils.isMesmaData;
 import static br.ce.wcaquino.teste_unitario.utils.DataUtils.obterDataComDiferencaDias;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -137,7 +139,7 @@ public class LocacaoServiceTest {
 		Locacao resultado = service.alugarFilmes(usuario, filmes);
 
 		// verificação
-		boolean ehSegunda = DataUtils.verificarDiaSemana(resultado.getDataRetorno(), Calendar.MONDAY);
-		Assert.assertTrue(ehSegunda);
+		//Assert.assertThat(resultado.getDataRetorno(), caiEm(Calendar.MONDAY));
+		Assert.assertThat(resultado.getDataRetorno(), caiNumaSegunda());
 	}
 }
