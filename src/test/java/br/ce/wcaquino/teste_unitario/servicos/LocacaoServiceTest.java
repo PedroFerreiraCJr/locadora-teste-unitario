@@ -1,9 +1,8 @@
 package br.ce.wcaquino.teste_unitario.servicos;
 
-import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.caiEm;
 import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.caiNumaSegunda;
-import static br.ce.wcaquino.teste_unitario.utils.DataUtils.isMesmaData;
-import static br.ce.wcaquino.teste_unitario.utils.DataUtils.obterDataComDiferencaDias;
+import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.ehHoje;
+import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.ehHojeComDiferencaDias;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -70,8 +69,8 @@ public class LocacaoServiceTest {
 
 		// verificação
 		error.checkThat(locacao.getValor(), is(equalTo(5.0)));
-		error.checkThat(isMesmaData(locacao.getDataLocacao(), new Date()), is(true));
-		error.checkThat(isMesmaData(locacao.getDataRetorno(), obterDataComDiferencaDias(1)), is(true));
+		error.checkThat(locacao.getDataLocacao(), ehHoje());
+		error.checkThat(locacao.getDataRetorno(), ehHojeComDiferencaDias(1));
 	}
 
 	/**
@@ -139,7 +138,7 @@ public class LocacaoServiceTest {
 		Locacao resultado = service.alugarFilmes(usuario, filmes);
 
 		// verificação
-		//Assert.assertThat(resultado.getDataRetorno(), caiEm(Calendar.MONDAY));
+		// Assert.assertThat(resultado.getDataRetorno(), caiEm(Calendar.MONDAY));
 		Assert.assertThat(resultado.getDataRetorno(), caiNumaSegunda());
 	}
 }
