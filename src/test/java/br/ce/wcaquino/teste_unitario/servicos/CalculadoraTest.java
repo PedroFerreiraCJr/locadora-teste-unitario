@@ -2,6 +2,7 @@ package br.ce.wcaquino.teste_unitario.servicos;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -62,6 +63,16 @@ public class CalculadoraTest {
 		int b = 0;
 
 		// ação
-		int resultado = calculadora.dividir(a, b);
+		calculadora.dividir(a, b);
+	}
+
+	@Test
+	public void deveDividir() {
+		String a = "6";
+		String b = "3";
+
+		int resultado = calculadora.divide(a, b);
+
+		Assert.assertEquals(2, resultado);
 	}
 }
