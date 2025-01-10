@@ -49,8 +49,12 @@ public class CalculoValorLocacaoTest {
 	@Before
 	public void setUp() {
 		this.service = new LocacaoService();
+
 		LocacaoDAO dao = Mockito.mock(LocacaoDAO.class);
 		service.setLocacaoDAO(dao);
+
+		SPCService spc = Mockito.mock(SPCService.class);
+		service.setSPCService(spc);
 	}
 
 	@Parameters(name = "{2}")

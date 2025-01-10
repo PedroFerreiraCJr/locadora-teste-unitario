@@ -36,6 +36,9 @@ public class LocacaoServiceTest {
 
 	private LocacaoService service;
 
+	private LocacaoDAO dao;
+	private SPCService spc;
+
 	@Rule
 	public ErrorCollector error = new ErrorCollector();
 
@@ -45,8 +48,12 @@ public class LocacaoServiceTest {
 	@Before
 	public void setUp() {
 		service = new LocacaoService();
-		LocacaoDAO dao = Mockito.mock(LocacaoDAO.class);
+
+		dao = Mockito.mock(LocacaoDAO.class);
 		service.setLocacaoDAO(dao);
+
+		spc = Mockito.mock(SPCService.class);
+		service.setSPCService(spc);
 	}
 
 	/**
@@ -146,5 +153,19 @@ public class LocacaoServiceTest {
 		// verificação
 		// Assert.assertThat(resultado.getDataRetorno(), caiEm(Calendar.MONDAY));
 		Assert.assertThat(resultado.getDataRetorno(), caiNumaSegunda());
+	}
+
+	@Test
+	public void naoDeveAlugarFilmeParaNegativadoSPC() throws FilmeSemEstoqueException, LocadoraException {
+		// cenário
+		Usuario usuario = UsuarioBuilder.umUsuario().agora();
+		List<Filme> filmes = Arrays.asList(FilmeBuilder.umFilme().agora());
+
+		Mockito.when(spc.possuiNegativaaco(usuario)).thenReturn(true);
+
+		exception.expect(LocadoraException.class);
+		exception.expectMessage("Usuário Negativado");
+
+		service.alugarFilmes(usuario, filmes);
 	}
 }
