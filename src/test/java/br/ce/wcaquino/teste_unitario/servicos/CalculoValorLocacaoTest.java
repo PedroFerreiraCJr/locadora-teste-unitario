@@ -16,6 +16,8 @@ import org.junit.runners.Parameterized.Parameters;
 
 import br.ce.wcaquino.teste_unitario.builders.FilmeBuilder;
 import br.ce.wcaquino.teste_unitario.builders.UsuarioBuilder;
+import br.ce.wcaquino.teste_unitario.dao.LocacaoDAO;
+import br.ce.wcaquino.teste_unitario.dao.LocacaoDAOFake;
 import br.ce.wcaquino.teste_unitario.entidades.Filme;
 import br.ce.wcaquino.teste_unitario.entidades.Locacao;
 import br.ce.wcaquino.teste_unitario.entidades.Usuario;
@@ -47,6 +49,8 @@ public class CalculoValorLocacaoTest {
 	@Before
 	public void setUp() {
 		this.service = new LocacaoService();
+		LocacaoDAO dao = new LocacaoDAOFake();
+		service.setLocacaoDAO(dao);
 	}
 
 	@Parameters(name = "{2}")
