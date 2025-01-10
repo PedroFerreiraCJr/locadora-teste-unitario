@@ -35,7 +35,7 @@ public class LocacaoService {
 			}
 		}
 
-		if (this.service.possuiNegativaco(usuario)) {
+		if (this.service.possuiNegativacao(usuario)) {
 			throw new LocadoraException("Usuário Negativado");
 		}
 

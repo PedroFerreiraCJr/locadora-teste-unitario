@@ -161,7 +161,7 @@ public class LocacaoServiceTest {
 		Usuario usuario = UsuarioBuilder.umUsuario().agora();
 		List<Filme> filmes = Arrays.asList(FilmeBuilder.umFilme().agora());
 
-		Mockito.when(spc.possuiNegativaco(usuario)).thenReturn(true);
+		Mockito.when(spc.possuiNegativacao(usuario)).thenReturn(true);
 
 		exception.expect(LocadoraException.class);
 		exception.expectMessage("Usuário Negativado");
