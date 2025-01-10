@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import br.ce.wcaquino.teste_unitario.dao.LocacaoDAO;
 import br.ce.wcaquino.teste_unitario.entidades.Filme;
 import br.ce.wcaquino.teste_unitario.entidades.Locacao;
 import br.ce.wcaquino.teste_unitario.entidades.Usuario;
@@ -14,6 +15,8 @@ import br.ce.wcaquino.teste_unitario.exceptions.LocadoraException;
 import br.ce.wcaquino.teste_unitario.utils.DataUtils;
 
 public class LocacaoService {
+
+	private LocacaoDAO dao;
 
 	public Locacao alugarFilmes(Usuario usuario, List<Filme> filmes)
 			throws FilmeSemEstoqueException, LocadoraException {
@@ -50,8 +53,8 @@ public class LocacaoService {
 				case 4:
 					valorFilme = valorFilme * 0.25d;
 					break;
-			case 5:
-				valorFilme = 0.0d;
+				case 5:
+					valorFilme = 0.0d;
 			}
 
 			valorTotal += valorFilme;
@@ -67,7 +70,7 @@ public class LocacaoService {
 		locacao.setDataRetorno(dataEntrega);
 
 		// Salvando a locacao...
-		// TODO adicionar método para salvar
+		dao.salvar(locacao);
 
 		return locacao;
 	}
