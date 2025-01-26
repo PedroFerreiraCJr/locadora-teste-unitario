@@ -21,6 +21,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -35,6 +36,7 @@ import br.ce.wcaquino.teste_unitario.entidades.Locacao;
 import br.ce.wcaquino.teste_unitario.entidades.Usuario;
 import br.ce.wcaquino.teste_unitario.exceptions.FilmeSemEstoqueException;
 import br.ce.wcaquino.teste_unitario.exceptions.LocadoraException;
+import br.ce.wcaquino.teste_unitario.matchers.MatchersProprios;
 import br.ce.wcaquino.teste_unitario.utils.DataUtils;
 
 public class LocacaoServiceTest {
@@ -188,16 +190,10 @@ public class LocacaoServiceTest {
 		Usuario usuario = UsuarioBuilder.umUsuario().agora();
 		Usuario usuario2 = UsuarioBuilder.umUsuario().comNome("Usuario em dia").agora();
 		Usuario usuario3 = UsuarioBuilder.umUsuario().comNome("Outro atrasado").agora();
-		List<Locacao> locacoes = Arrays
-			.asList(
-				LocacaoBuilder.umLocacao()
-					.comUsuario(usuario).atrasado().agora(),
-				LocacaoBuilder.umLocacao()
-					.comUsuario(usuario2).agora(),
-				LocacaoBuilder.umLocacao()
-					.comUsuario(usuario3).atrasado().agora(),
-				LocacaoBuilder.umLocacao()
-					.comUsuario(usuario3).atrasado().agora());
+		List<Locacao> locacoes = Arrays.asList(LocacaoBuilder.umLocacao().comUsuario(usuario).atrasado().agora(),
+				LocacaoBuilder.umLocacao().comUsuario(usuario2).agora(),
+				LocacaoBuilder.umLocacao().comUsuario(usuario3).atrasado().agora(),
+				LocacaoBuilder.umLocacao().comUsuario(usuario3).atrasado().agora());
 
 		Mockito.when(dao.obterLocacoesPendentes()).thenReturn(locacoes);
 
@@ -218,13 +214,30 @@ public class LocacaoServiceTest {
 		Usuario usuario = UsuarioBuilder.umUsuario().agora();
 		List<Filme> filmes = Arrays.asList(FilmeBuilder.umFilme().agora());
 
-		Mockito.when(spc.possuiNegativacao(usuario))
-			.thenThrow(new Exception("Falha catrastófica"));
+		Mockito.when(spc.possuiNegativacao(usuario)).thenThrow(new Exception("Falha catrastófica"));
 
 		exception.expect(LocadoraException.class);
 		exception.expectMessage("Problemas com SPC, tente novamente");
 
 		// ação
 		service.alugarFilmes(usuario, filmes);
+	}
+
+	@Test
+	public void deveProrrogarUmaLocacao() {
+		// cenário
+		Locacao locacao = LocacaoBuilder.umLocacao().agora();
+
+		// ação
+		service.prorrogarLocacao(locacao, 3);
+
+		// verificação
+		ArgumentCaptor<Locacao> argCaptor = ArgumentCaptor.forClass(Locacao.class);
+		Mockito.verify(dao).salvar(argCaptor.capture());
+		Locacao locacaoRetornada = argCaptor.getValue();
+
+		error.checkThat(locacaoRetornada.getValor(), is(12.0));
+		error.checkThat(locacaoRetornada.getDataLocacao(), MatchersProprios.ehHoje());
+		error.checkThat(locacaoRetornada.getDataRetorno(), MatchersProprios.ehHojeComDiferencaDias(3));
 	}
 }
