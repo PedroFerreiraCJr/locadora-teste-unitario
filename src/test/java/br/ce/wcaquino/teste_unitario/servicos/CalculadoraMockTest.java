@@ -12,9 +12,6 @@ public class CalculadoraMockTest {
 		Calculadora calc = Mockito.mock(Calculadora.class);
 
 		ArgumentCaptor<Integer> argCaptor = ArgumentCaptor.forClass(Integer.class);
-
-		// se for utilizado um matchers, como o exemplo abaixo, é necessário usar
-		// um matcher para cada parâmetro do método;
 		Mockito.when(calc.somar(argCaptor.capture(), argCaptor.capture())).thenReturn(5);
 
 		Assert.assertEquals(5, calc.somar(1, 2));
