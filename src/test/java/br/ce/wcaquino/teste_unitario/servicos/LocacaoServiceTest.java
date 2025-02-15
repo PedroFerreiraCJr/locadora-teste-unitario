@@ -26,6 +26,7 @@ import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import br.ce.wcaquino.teste_unitario.builders.FilmeBuilder;
 import br.ce.wcaquino.teste_unitario.builders.LocacaoBuilder;
@@ -279,5 +280,24 @@ public class LocacaoServiceTest {
 		// verificação
 		Assert.assertThat(locacao.getValor(), CoreMatchers.is(1.0));
 		PowerMockito.verifyPrivate(service).invoke("calcularValorLocacao", filmes);
+	}
+
+	/**
+	 * Através da classe Whitebox do PowerMock, é possível invocar diretamente um
+	 * método de instância privado;
+	 */
+	@Test
+	public void deveCalcularValorLocacao() throws Exception {
+		// cenário
+		List<Filme> filmes = Collections.singletonList(FilmeBuilder.umFilme().agora());
+
+		// ação
+		// o método 'invokeMethod' retorna um Object, portanto, é preciso do casting
+		// para o respectivo valor retornado pela invocação real do método;
+		Double valor = (Double) Whitebox
+				.invokeMethod(service, "calcularValorLocacao", filmes);
+
+		// verificação
+		Assert.assertThat(valor, CoreMatchers.is(4.0));
 	}
 }
