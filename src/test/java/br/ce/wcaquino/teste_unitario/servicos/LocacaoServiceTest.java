@@ -1,8 +1,6 @@
 package br.ce.wcaquino.teste_unitario.servicos;
 
 import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.caiNumaSegunda;
-import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.ehHoje;
-import static br.ce.wcaquino.teste_unitario.matchers.MatchersProprios.ehHojeComDiferencaDias;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -10,7 +8,6 @@ import static org.junit.Assert.assertThat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.hamcrest.CoreMatchers;
@@ -43,7 +40,7 @@ import br.ce.wcaquino.teste_unitario.matchers.MatchersProprios;
 import br.ce.wcaquino.teste_unitario.utils.DataUtils;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({LocacaoService.class})
+@PrepareForTest({ LocacaoService.class })
 public class LocacaoServiceTest {
 
 	@InjectMocks
@@ -67,6 +64,7 @@ public class LocacaoServiceTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
+		service = PowerMockito.spy(service);
 	}
 
 	/**
@@ -86,17 +84,17 @@ public class LocacaoServiceTest {
 		Usuario usuario = UsuarioBuilder.umUsuario().agora();
 		List<Filme> filmes = Collections.singletonList(FilmeBuilder.umFilme().comValor(5.0).agora());
 
-		//PowerMockito.whenNew(Date.class).withNoArguments()
-		//	.thenReturn(DataUtils.obterData(28, 4, 2017));
-		
+		// PowerMockito.whenNew(Date.class).withNoArguments()
+		// .thenReturn(DataUtils.obterData(28, 4, 2017));
+
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.DAY_OF_MONTH, 28);
 		calendar.set(Calendar.MONTH, Calendar.APRIL);
 		calendar.set(Calendar.YEAR, 2017);
-		
+
 		PowerMockito.mockStatic(Calendar.class);
 		PowerMockito.when(Calendar.getInstance()).thenReturn(calendar);
-		
+
 		// ação
 		Locacao locacao = service.alugarFilmes(usuario, filmes);
 
@@ -167,14 +165,14 @@ public class LocacaoServiceTest {
 		Usuario usuario = UsuarioBuilder.umUsuario().agora();
 		List<Filme> filmes = Arrays.asList(FilmeBuilder.umFilme().agora());
 
-		//PowerMockito.whenNew(Date.class).withNoArguments()
-		//	.thenReturn(DataUtils.obterData(29, 4, 2017));
-		
+		// PowerMockito.whenNew(Date.class).withNoArguments()
+		// .thenReturn(DataUtils.obterData(29, 4, 2017));
+
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.DAY_OF_MONTH, 29);
 		calendar.set(Calendar.MONTH, Calendar.APRIL);
 		calendar.set(Calendar.YEAR, 2017);
-		
+
 		PowerMockito.mockStatic(Calendar.class);
 		PowerMockito.when(Calendar.getInstance()).thenReturn(calendar);
 
@@ -183,8 +181,8 @@ public class LocacaoServiceTest {
 
 		// verificação
 		Assert.assertThat(resultado.getDataRetorno(), caiNumaSegunda());
-		//PowerMockito.verifyNew(Date.class, Mockito.times(2)).withNoArguments();
-		
+		// PowerMockito.verifyNew(Date.class, Mockito.times(2)).withNoArguments();
+
 		PowerMockito.verifyStatic(Mockito.times(2));
 		Calendar.getInstance();
 	}
@@ -265,5 +263,21 @@ public class LocacaoServiceTest {
 		error.checkThat(locacaoRetornada.getValor(), is(12.0));
 		error.checkThat(locacaoRetornada.getDataLocacao(), MatchersProprios.ehHoje());
 		error.checkThat(locacaoRetornada.getDataRetorno(), MatchersProprios.ehHojeComDiferencaDias(3));
+	}
+
+	@Test
+	public void deveAlugarFilmeSemCalcularValor() throws Exception {
+		// cenário
+		Usuario usuario = UsuarioBuilder.umUsuario().agora();
+		List<Filme> filmes = Collections.singletonList(FilmeBuilder.umFilme().agora());
+
+		PowerMockito.doReturn(1.0).when(service, "calcularValorLocacao", filmes);
+
+		// ação
+		Locacao locacao = service.alugarFilmes(usuario, filmes);
+
+		// verificação
+		Assert.assertThat(locacao.getValor(), CoreMatchers.is(1.0));
+		PowerMockito.verifyPrivate(service).invoke("calcularValorLocacao", filmes);
 	}
 }
